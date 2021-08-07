@@ -11,8 +11,20 @@
 Отсортировать их по алфавиту 
 
 5) Добавить нумерацию выведенных фильмов */
-
 'use strict';
+
+const   removeAdvert = document.querySelectorAll('.promo__adv img'),
+        poster = document.querySelector('.promo__bg'),
+        changingGenre = poster.querySelector('.promo__genre'),
+        ulList = document.querySelector('.promo__interactive-list');
+
+removeAdvert.forEach(item => {
+    item.remove();
+});
+
+changingGenre.textContent = "Драма";
+
+poster.style.backgroundImage = `url("img/bg.jpg")`;
 
 const movieDB = {
     movies: [
@@ -23,4 +35,12 @@ const movieDB = {
         "Скотт Пилигрим против..."
     ]
 };
+ulList.innerHTML = "";
+movieDB.movies.sort();
 
+movieDB.movies.forEach((item, i) => {
+    ulList.innerHTML += `<li class="promo__interactive-item">${i+1}.${item}
+        <div class="delete">
+        </div>
+        </li>`;
+});
